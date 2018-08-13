@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -173,6 +174,40 @@ public class SubClassificationDao {
             }
 
         } catch (SQLException ex) {
+            System.out.println("SQL Error Exception: " + ex.getMessage());
+        } finally {
+            DatabaseConnect.disconnect();
+        }
+
+        return subClassificationList;
+    }
+    
+    public ArrayList subClassificationByMainClassification(String mainClassificationId) {
+        String sql = "SELECT * FROM main mc "
+                + "JOIN sub sc "
+                + "ON mc.MCID=sc.MCID "
+                + "WHERE sc.MCID='" + mainClassificationId + "'";
+
+        ArrayList<SubClassification> subClassificationList = new ArrayList<>();
+
+        try {
+            DatabaseConnect db = new DatabaseConnect();
+            Connection con = db.getconnection();
+            Statement stmt = null;
+            stmt=con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                SubClassification subClassification = new SubClassification();
+                subClassification.setSubClassificationId(rs.getString("subClassificationId"));
+                subClassification.setSubClassificationName(rs.getString("subClassificationName"));
+                subClassification.setMainClassificationId(rs.getString("mainClassificationId"));
+                subClassification.setMainClassificationName(rs.getString("mainClassificationName"));
+                subClassificationList.add(subClassification);
+            }
+
+        } catch (SQLException ex) {
+//            Logger.getLogger(SubClassificationDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("SQL Error Exception: " + ex.getMessage());
         } finally {
             DatabaseConnect.disconnect();
