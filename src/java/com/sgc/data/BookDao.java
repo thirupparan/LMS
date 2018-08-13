@@ -157,5 +157,38 @@ public class BookDao {
             Logger.getLogger(BookDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public ArrayList viewBookById(String bookId) {
+        String sql = "SELECT * FROM books BookID = '" + bookId + "'";
+
+        ArrayList<Book> bookList = new ArrayList<>();
+        try {
+            DatabaseConnect db = new DatabaseConnect();
+        Connection con = db.getconnection();
+        PreparedStatement statement;
+        statement = con.prepareStatement(sql);
+            ResultSet rsShow = statement.executeQuery();
+
+            while (rsShow.next()) {
+            Book book = new Book();
+            book.setBookId(rsShow.getString("BookID"));
+            book.setTitle(rsShow.getString("Title"));
+            book.setAuthor(rsShow.getString("Author"));
+            book.setMainClassification(rsShow.getString("MCID"));
+            book.setSubClassification(rsShow.getString("SCID"));
+            book.setYearOfPublishing(rsShow.getString("YearOfPublishing"));
+            book.setLastPrintedYear(rsShow.getString("LastPrintedYear"));
+            book.setISBN(rsShow.getString("ISBNno"));
+            book.setNoOfPages(rsShow.getString("NoOfPages"));
+
+            bookList.add(book);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(BookDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DatabaseConnect.disconnect();
+        }
+        return bookList;
+    }
 
 }
