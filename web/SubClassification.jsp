@@ -67,8 +67,8 @@
                     complete: function (response) {
                         var json = JSON.parse(response.responseText);
                         var noOfRecords = Object.keys(json.MainClassification).length;
-                        var mainClassificationId = json.MainClassification[0].MainClassificationId;
-                        var mainClassificationName = json.MainClassification[0].MainClassificationName;
+                        //var mainClassificationId = json.MainClassification[0].MainClassificationId;
+                        //var mainClassificationName = json.MainClassification[0].MainClassificationName;
 
                         option = '<option Selected disabled hidden>Please select Main Classification</option>';
 
