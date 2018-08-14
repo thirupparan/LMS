@@ -199,10 +199,10 @@ public class SubClassificationDao {
 
             while (rs.next()) {
                 SubClassification subClassification = new SubClassification();
-                subClassification.setSubClassificationId(rs.getString("subClassificationId"));
-                subClassification.setSubClassificationName(rs.getString("subClassificationName"));
-                subClassification.setMainClassificationId(rs.getString("mainClassificationId"));
-                subClassification.setMainClassificationName(rs.getString("mainClassificationName"));
+                subClassification.setSubClassificationId(rs.getString("SCID"));
+                subClassification.setSubClassificationName(rs.getString("SCName"));
+                subClassification.setMainClassificationId(rs.getString("MCID"));
+                subClassification.setMainClassificationName(rs.getString("MCName"));
                 subClassificationList.add(subClassification);
             }
 

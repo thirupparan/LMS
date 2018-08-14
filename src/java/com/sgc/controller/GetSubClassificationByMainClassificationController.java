@@ -1,10 +1,9 @@
-package com.sgc.controller;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package com.sgc.controller;
 
 import com.sgc.data.SubClassificationDao;
 import com.sgc.model.SubClassification;
@@ -25,9 +24,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author thiru
  */
-@WebServlet(urlPatterns = {"/GetSubClassificationByMainClassificationController"})
+@WebServlet(name = "GetSubClassificationByMainClassificationController", urlPatterns = {"/GetSubClassificationByMainClassificationController"})
 public class GetSubClassificationByMainClassificationController extends HttpServlet {
 SubClassificationDao subClassificationDao = new SubClassificationDao();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -66,21 +66,6 @@ SubClassificationDao subClassificationDao = new SubClassificationDao();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // processRequest(request, response);
-       
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
         //processRequest(request, response);
         String mainClassificationId = request.getParameter("mainClassificationId");
         
@@ -107,6 +92,20 @@ SubClassificationDao subClassificationDao = new SubClassificationDao();
         writer.print(root);
         writer.flush();
         writer.close();
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**

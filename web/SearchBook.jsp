@@ -106,7 +106,8 @@
                         for (var x = 0; x < noOfList; x++) {
                             //alert(json.MainClassification[x].mainClassificationName);
                             //$('#output').html(user_profile.books[x].bookId);
-                            option += '<option value="' + json.MainClassification[x].mainClassificationId + '">' + json.MainClassification[x].mainClassificationName + '</option>';
+                            //option += '<option value="' + json.MainClassification[x].mainClassificationId + '">' + json.MainClassification[x].mainClassificationName + '</option>';
+                            option += "<option value='" + json.MainClassification[x].MainClassificationId + "'>" + json.MainClassification[x].MainClassificationName + "</option>";
                             //$("#myTable > tbody").append("<tr><td>row content</td></tr>");
                         }
                         //$('#idMainClassification').append(option);
@@ -173,7 +174,8 @@
                         for (var x = 0; x < noOfList; x++) {
                             //alert(json.MainClassification[x].mainClassificationName);
                             //$('#output').html(user_profile.books[x].bookId);
-                            option += '<option value="' + json.SubClassification[x].SubClassificationId + '">' + json.SubClassification[x].SubClassificationName + '</option>';
+                            //option += '<option value="' + json.SubClassification[x].SubClassificationId + '">' + json.SubClassification[x].SubClassificationName + '</option>';
+                              option += "<option value='" + json.SubClassification[x].SubClassificationId + "'>" + json.SubClassification[x].SubClassificationName + "</option>";
                             //$("#myTable > tbody").append("<tr><td>row content</td></tr>");
                         }
                         //$('#idMainClassification').append(option);
@@ -267,7 +269,8 @@
                         for (var x = 0; x < noOfList; x++) {
                             //alert(json.MainClassification[x].mainClassificationName);
                             //$('#output').html(user_profile.books[x].bookId);
-                            option += '<option value="' + json.SubClassification[x].SubClassificationId + '">' + json.SubClassification[x].SubClassificationName + '</option>';
+                            //option += '<option value="' + json.SubClassification[x].SubClassificationId + '">' + json.SubClassification[x].SubClassificationName + '</option>';
+                              option += "<option value='" + json.SubClassification[x].SubClassificationId + "'>" + json.SubClassification[x].SubClassificationName + "</option>";
                             //$("#myTable > tbody").append("<tr><td>row content</td></tr>");
                         }
                         //$('#idMainClassification').append(option);
@@ -303,7 +306,8 @@
                             for (var x = 0; x < noOfList; x++) {
                                 //alert(json.MainClassification[x].mainClassificationName);
                                 //$('#output').html(user_profile.books[x].bookId);
-                                option += '<option value="' + json.SubClassification[x].SubClassificationId + '">' + json.SubClassification[x].SubClassificationName + '</option>';
+                                //option += '<option value="' + json.SubClassification[x].SubClassificationId + '">' + json.SubClassification[x].SubClassificationName + '</option>';
+                                option += "<option value='" + json.SubClassification[x].SubClassificationId + "'>" + json.SubClassification[x].SubClassificationName + "</option>";
                                 //$("#myTable > tbody").append("<tr><td>row content</td></tr>");
                             }
                             //$('#idMainClassification').append(option);
