@@ -11,7 +11,7 @@ package com.sgc.model;
  */
 public class Book {
 
-    private String BookId, Title, Author, MainClassification, SubClassification, YearOfPublishing, LastPrintedYear, ISBN, NoOfPages;
+    private String BookId, Title, Author, MainClassification, SubClassification,MainClassificationName,SubClassificationName, YearOfPublishing, LastPrintedYear, ISBN, NoOfPages;
 
     public String getBookId() {
         return BookId;
@@ -53,6 +53,22 @@ public class Book {
         this.SubClassification = SubClassification;
     }
 
+    public String getMainClassificationName() {
+        return MainClassificationName;
+    }
+
+    public void setMainClassificationName(String MainClassificationName) {
+        this.MainClassificationName = MainClassificationName;
+    }
+
+    public String getSubClassificationName() {
+        return SubClassificationName;
+    }
+
+    public void setSubClassificationName(String SubClassificationName) {
+        this.SubClassificationName = SubClassificationName;
+    }
+
     public String getYearOfPublishing() {
         return YearOfPublishing;
     }
@@ -84,5 +100,4 @@ public class Book {
     public void setNoOfPages(String NoOfPages) {
         this.NoOfPages = NoOfPages;
     }
-
 }

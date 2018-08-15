@@ -64,7 +64,7 @@ public class DeleteBookController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String bookId = request.getParameter("delete");
+        String bookId = request.getParameter("deleteBookId");
         BookDao dao = new BookDao();
         try {
             dao.deleteBook(bookId);

@@ -22,13 +22,12 @@ import java.util.logging.Logger;
  */
 public class BookDao {
 
-    private String MainClassification;
-    private String SubClassification;
-
     public void saveBook(Book book) throws ClassNotFoundException, SQLException {
+        //Statement stmt = con.createStatement();
+        DatabaseConnect db = new DatabaseConnect();
+        Connection con = db.getconnection();
+        PreparedStatement statement;
         try {
-            DatabaseConnect db = new DatabaseConnect();
-            Connection con = db.getconnection();
             String bookid = book.getBookId();
             String title = book.getTitle();
             String author = book.getAuthor();
@@ -39,8 +38,6 @@ public class BookDao {
             String isbn = book.getISBN();
             String noofpages = book.getNoOfPages();
 
-            //Statement stmt = con.createStatement();
-            PreparedStatement statement;
             String insertBook = "INSERT INTO books (BookID,Title,Author,MCID,SCID,YearOfPublishing,LastPrintedYear,ISBNno,NoOfPages) VALUES (?,?,?,?,?,?,?,?,?)";
             statement = con.prepareStatement(insertBook);
             statement.setString(1, bookid);
@@ -54,7 +51,7 @@ public class BookDao {
             statement.setString(9, noofpages);
             statement.executeUpdate();
             DatabaseConnect.disconnect();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             Logger.getLogger(BookDao.class.getName()).log(Level.SEVERE, null, e);
         }
     }
@@ -64,14 +61,16 @@ public class BookDao {
      * @return @throws ClassNotFoundException
      * @throws java.sql.SQLException
      */
-    public List<Book> showBook() throws SQLException {
-        List<Book> result = new ArrayList<>();
+    public ArrayList<Book> showBook() throws SQLException {
+        ArrayList<Book> result = new ArrayList<>();
 
         DatabaseConnect db = new DatabaseConnect();
         Connection con = db.getconnection();
         PreparedStatement statement;
 
-        String showSQL = "SELECT * FROM books ORDER BY BookID";
+        String showSQL = "SELECT * FROM books b"
+                + " JOIN Sub sc ON b.SCID = sc.SCID"
+                + " JOIN main mc ON mc.MCID=b.MCID";
 
         statement = con.prepareStatement(showSQL);
         ResultSet rsShow = statement.executeQuery();
@@ -81,12 +80,14 @@ public class BookDao {
             book.setBookId(rsShow.getString("BookID"));
             book.setTitle(rsShow.getString("Title"));
             book.setAuthor(rsShow.getString("Author"));
-            book.setMainClassification(rsShow.getString("MCID"));
-            book.setSubClassification(rsShow.getString("SCID"));
+            book.setMainClassification(rsShow.getString("MCName"));
+            book.setSubClassification(rsShow.getString("SCName"));
             book.setYearOfPublishing(rsShow.getString("YearOfPublishing"));
             book.setLastPrintedYear(rsShow.getString("LastPrintedYear"));
             book.setISBN(rsShow.getString("ISBNno"));
             book.setNoOfPages(rsShow.getString("NoOfPages"));
+            //book.setMainClassificationName(rsShow.getString("MCName"));
+            //book.setSubClassification(rsShow.getString("SCName"));
 
             result.add(book);
 
@@ -108,39 +109,27 @@ public class BookDao {
         DatabaseConnect.disconnect();
     }
 
-    public void updateBook(String bookID) throws SQLException {
-
+    public void updateBook(Book book) throws SQLException {
+        //Book book = new Book();
+        String bookId = book.getBookId();
         DatabaseConnect db = new DatabaseConnect();
         Connection con = db.getconnection();
-        Statement stmt;
+        //Statement stmt;
         try {
-            stmt = con.createStatement();
-            String MCID = null, SCID = null;
-            String getMainClassificationID = "SELECT MCID FROM main WHERE MCName = '" + MainClassification + "'";
-            String getSubClassificationID = "SELECT * from main mc "
-                    + "JOIN sub sc on mc.MCID = sc.MCID "
-                    + "WHERE MCName = '" + MainClassification + "' and SCName = '" + SubClassification + "'";
-            ResultSet rsMCID = stmt.executeQuery(getMainClassificationID);
-            while (rsMCID.next()) {
-                MCID = rsMCID.getString("MCID");
-            }
-            ResultSet rsSCID = stmt.executeQuery(getSubClassificationID);
-            while (rsSCID.next()) {
-                SCID = rsSCID.getString("SCID");
-            }
-            String sqlUpdate = "UPDATE books SET"
+            String sqlUpdate = "UPDATE books SET "
                     + "Title = ?,"
                     + "Author = ?,"
-                    + "MCID = ?,"
+                    + "MCID =?,"
                     + "SCID =?,"
                     + "YearOfPublishing =?,"
                     + "LastPrintedYear =?,"
                     + "ISBNno =?,"
-                    + "NoOfPages = ?"
-                    + "WHERE BookID ='" + bookID + "'";
-            con.setAutoCommit(false);
-            Book book = new Book();
+                    + "NoOfPages =? "
+                    + "WHERE BookID ='" + bookId + "'";
+            //con.setAutoCommit(false);
+            // Book book = new Book();
             PreparedStatement pstmt = con.prepareStatement(sqlUpdate);
+            //pstmt.setString(9, book.getBookId());
             pstmt.setString(1, book.getTitle());
             pstmt.setString(2, book.getAuthor());
             pstmt.setString(3, book.getMainClassification());
@@ -149,38 +138,92 @@ public class BookDao {
             pstmt.setString(6, book.getLastPrintedYear());
             pstmt.setString(7, book.getISBN());
             pstmt.setString(8, book.getNoOfPages());
-            //pstmt.setString(9,book.getBookId());
             pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            // Logger.getLogger(BookDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("SQL Query Error Exception: " + ex);
+        } finally {
             DatabaseConnect.disconnect();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(BookDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public ArrayList viewBookById(String bookId) {
-        String sql = "SELECT * FROM books BookID = '" + bookId + "'";
+        String sql = "SELECT * FROM books b"
+                + " JOIN Sub sc ON b.SCID = sc.SCID"
+                + " JOIN main mc ON mc.MCID=b.MCID"
+                + " WHERE BookID ='" + bookId + "'";
 
         ArrayList<Book> bookList = new ArrayList<>();
         try {
             DatabaseConnect db = new DatabaseConnect();
-        Connection con = db.getconnection();
-        PreparedStatement statement;
-        statement = con.prepareStatement(sql);
+            Connection con = db.getconnection();
+            PreparedStatement statement;
+            statement = con.prepareStatement(sql);
             ResultSet rsShow = statement.executeQuery();
 
             while (rsShow.next()) {
-            Book book = new Book();
-            book.setBookId(rsShow.getString("BookID"));
-            book.setTitle(rsShow.getString("Title"));
-            book.setAuthor(rsShow.getString("Author"));
-            book.setMainClassification(rsShow.getString("MCID"));
-            book.setSubClassification(rsShow.getString("SCID"));
-            book.setYearOfPublishing(rsShow.getString("YearOfPublishing"));
-            book.setLastPrintedYear(rsShow.getString("LastPrintedYear"));
-            book.setISBN(rsShow.getString("ISBNno"));
-            book.setNoOfPages(rsShow.getString("NoOfPages"));
+                Book book = new Book();
+                book.setBookId(rsShow.getString("BookID"));
+                book.setTitle(rsShow.getString("Title"));
+                book.setAuthor(rsShow.getString("Author"));
+                book.setMainClassification(rsShow.getString("MCID"));
+                book.setSubClassification(rsShow.getString("SCID"));
+                book.setMainClassificationName(rsShow.getString("MCName"));
+                book.setSubClassificationName(rsShow.getNString("SCName"));
+                book.setYearOfPublishing(rsShow.getString("YearOfPublishing"));
+                book.setLastPrintedYear(rsShow.getString("LastPrintedYear"));
+                book.setISBN(rsShow.getString("ISBNno"));
+                book.setNoOfPages(rsShow.getString("NoOfPages"));
 
-            bookList.add(book);
+                bookList.add(book);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(BookDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DatabaseConnect.disconnect();
+        }
+        return bookList;
+    }
+
+    public ArrayList serarchBook(String bookId) {
+        String sql = "SELECT * FROM books b "
+                + " JOIN main mc ON mc.MCID=b.MCID "
+                + " JOIN sub sc ON sc.SCID =b.SCID "
+                + " WHERE BookID LIKE '" + bookId + "%'"
+                + " OR sc.SCName LIKE '" + bookId + "%'"
+                + " OR mc.MCName LIKE '" + bookId + "%'"
+                + " OR b.Title LIKE '" + bookId + "%'"
+                + " OR b.Author LIKE '" + bookId + "%'"
+                + " OR b.YearOfPublishing LIKE '" + bookId + "%'"
+                + " OR b.LastPrintedYear LIKE '" + bookId + "%'"
+                + " OR b.ISBNno LIKE '" + bookId + "%'"
+                + " ORDER BY b.BookID ";
+
+        ArrayList<Book> bookList = new ArrayList<>();
+        try {
+            DatabaseConnect db = new DatabaseConnect();
+            Connection con = db.getconnection();
+            PreparedStatement statement;
+            statement = con.prepareStatement(sql);
+            ResultSet rsShow = statement.executeQuery();
+
+            while (rsShow.next()) {
+                Book book = new Book();
+                book.setBookId(rsShow.getString("BookID"));
+                book.setTitle(rsShow.getString("Title"));
+                book.setAuthor(rsShow.getString("Author"));
+                book.setMainClassification(rsShow.getString("MCName"));
+                book.setSubClassification(rsShow.getString("SCName"));
+                //book.setMainClassificationName(rsShow.getString("MCName"));
+                //book.setSubClassificationName(rsShow.getNString("SCName"));
+                book.setYearOfPublishing(rsShow.getString("YearOfPublishing"));
+                book.setLastPrintedYear(rsShow.getString("LastPrintedYear"));
+                book.setISBN(rsShow.getString("ISBNno"));
+                book.setNoOfPages(rsShow.getString("NoOfPages"));
+
+                bookList.add(book);
             }
 
         } catch (SQLException ex) {

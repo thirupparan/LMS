@@ -135,7 +135,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="index.jsp"><img  src="img/Home-icon (1).png" width="40" height="40"></a>
 
-                <a class="nav-link text-dark" href="AddBook.jsp">Add Book<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-dark" href="ViewBookController">Book<span class="sr-only">(current)</span></a>
 
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -153,16 +153,16 @@
                                 <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Main Classification</a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="/ViewMainClassificationController">Add Main Classification</a></li>
-                                        <li><a class="dropdown-item" href="#">Edite main Classification</a></li>
-                                        <li><a class="dropdown-item" href="#">Delete main classification</a></li>
+<!--                                        <li><a class="dropdown-item" href="#">Edite main Classification</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete main classification</a></li>-->
 
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Sub Classification</a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="./ViewSubClassificationController">Add Sub Classification</a></li>
-                                        <li><a class="dropdown-item" href="#">Edite sub Classification</a></li>
-                                        <li><a class="dropdown-item" href="#">Delete main Classification</a></li>
+<!--                                        <li><a class="dropdown-item" href="#">Edite sub Classification</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete main Classification</a></li>-->
                                     </ul>
                                 </li>
                             </ul>

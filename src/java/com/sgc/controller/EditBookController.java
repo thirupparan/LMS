@@ -9,6 +9,7 @@ import com.sgc.data.BookDao;
 import com.sgc.model.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -65,23 +66,32 @@ public class EditBookController extends HttpServlet {
             throws ServletException, IOException {
         // processRequest(request, response);
         Book book = new Book();
-        book.setBookId(request.getParameter("bookId"));
-        book.setTitle(request.getParameter("title"));
-        book.setAuthor(request.getParameter("author"));
-        book.setMainClassification(request.getParameter("mainclassiffication"));
-        book.setSubClassification(request.getParameter("subclassification"));
-        book.setYearOfPublishing(request.getParameter("publishedyear"));
-        book.setLastPrintedYear(request.getParameter("lastprint"));
-        book.setISBN(request.getParameter("isbn"));
-        book.setNoOfPages(request.getParameter("numberofpage"));
+         String bookId = request.getParameter("editBookId");
+        String bookTitle = request.getParameter("editBookTitle");
+        String bookAuthor = request.getParameter("editBookAuthor");
+        String bookMainClassificationId = request.getParameter("editBookMainClassification");
+        String bookSubClassificationId = request.getParameter("editBookSubClassification");
+        String bookPublishYear = request.getParameter("editBookPublishYear");
+        String bookLastPrintYear = request.getParameter("editBookLastPrintYear");
+        String bookISBN = request.getParameter("editISBN");
+        String bookNoOfPages =(request.getParameter("editNoOfPages"));
         BookDao dao = new BookDao();
-        String bookId = request.getParameter("Update");
+        //String bookId = request.getParameter("editBookId");
         try {
-            dao.updateBook(bookId);
+            book.setBookId(bookId);
+            book.setTitle(bookTitle);
+            book.setAuthor(bookAuthor);
+            book.setMainClassification(bookMainClassificationId);
+            book.setSubClassification(bookSubClassificationId);
+            book.setYearOfPublishing(bookPublishYear);
+            book.setLastPrintedYear(bookLastPrintYear);
+            book.setISBN(bookISBN);
+            book.setNoOfPages(bookNoOfPages);
+            dao.updateBook(book);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ViewBookController");
             dispatcher.forward(request, response);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             Logger.getLogger(EditBookController.class.getName()).log(Level.SEVERE, null, e);
         }
 

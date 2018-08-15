@@ -411,135 +411,135 @@
                     $("#deleteBookId").val(deleteBookId);
                 });
 
-                $("#btnViewAll").click(function () {
-                    $("#tbodyBookDetails").empty();
+//                $("#btnViewAll").click(function () {
+//                    $("#tbodyBookDetails").empty();
+//
+//                    $("#totalRecordCount").empty();
+//
+//                    var viewAllRecords = $("#btnViewAll").attr("value");
+//
+//                    $.ajax({
+//                        url: 'SearchBookController?viewAllRecords=' + viewAllRecords,
+//
+//                        complete: function (viewResponse) {
+//                            var json = JSON.parse(viewResponse.responseText);
+//                            var noOfList = Object.keys(json.books).length;
+//                            //alert(json.MainClassification[0].mainClassificationName);
+//
+//                            for (var x = 0; x < noOfList; x++) {
+//                                var bookId = json.books[x].bookId;
+//                                var bookTitle = json.books[x].Title;
+//                                var bookAuthor = json.books[x].Author;
+//                                var bookPublishYear = json.books[x].PublishYear;
+//                                var bookLastPrintYear = json.books[x].LastPrintYear;
+//                                var bookISBN = json.books[x].ISBN;
+//                                var bookNoOfPages = json.books[x].NoOfPages;
+//                                var bookMainClassificationId = json.books[x].MainClassificationId;
+//                                var bookMainClassificationName = json.books[x].MainClassificationName;
+//                                var bookSubClassificationId = json.books[x].SubClassificationId;
+//                                var bookSubClassification = json.books[x].SubClassificationName;
+//
+//                                //alert(json.MainClassification[x].mainClassificationName);
+//                                //$('#output').html(user_profile.books[x].bookId);
+//                                //option += '<option value="' + json.SubClassification[x].SubClassificationId + '">' + json.SubClassification[x].SubClassificationName + '</option>';
+//                                var tbodyViewAll = '<tr>\n\
+//                                                    <td>' + bookId + '</td>\n\
+//                                                    <td>' + bookTitle + '</td>\n\
+//                                                    <td>' + bookAuthor + '</td>\n\
+//                                                    <td>' + bookMainClassificationName + '</td>\n\
+//                                                    <td>' + bookSubClassification + '</td>\n\
+//                                                    <td>' + bookPublishYear + '</td>\n\
+//                                                    <td>' + bookLastPrintYear + '</td>\n\
+//                                                    <td>' + bookISBN + '</td>\n\
+//                                                    <td>' + bookNoOfPages + '</td>\n\
+//                                                    <td>\n\
+//                                                        <a href="#editBookModal" class="edit" data-toggle="modal">\n\
+//                                                        <i class="material-icons" data-toggle="tooltip" id="editBtn' + bookId + '" value="' + bookId + '" title="Edit">&#xE254;</i></a>\n\
+//                                                        <a href="#deleteBookModal" class="delete" data-toggle="modal">\n\
+//                                                        <i class="material-icons" data-toggle="tooltip" id="deleteBtn' + bookId + '" value="' + bookId + '" title="Delete">&#xE872;</i></a>\n\
+//                                                    </td>\n\
+//                                                    </tr>';
+//
+//                                $("#tbodyBookDetails").append(tbodyViewAll);
+//                            }
+//                            var totalRecords = "Total <b>" + noOfList + "</b> record(s)";
+//                            $("#totalRecordCount").append(totalRecords);
+//                        },
+//
+//                        error: function () {
+//                            //$('#id').html('Error receiving the response from json');
+//                            console.log('Error receiving the response from json');
+//                        },
+//                    });
+//                    return false;
+//                });
 
-                    $("#totalRecordCount").empty();
-
-                    var viewAllRecords = $("#btnViewAll").attr("value");
-
-                    $.ajax({
-                        url: 'SearchBookController?viewAllRecords=' + viewAllRecords,
-
-                        complete: function (viewResponse) {
-                            var json = JSON.parse(viewResponse.responseText);
-                            var noOfList = Object.keys(json.books).length;
-                            //alert(json.MainClassification[0].mainClassificationName);
-
-                            for (var x = 0; x < noOfList; x++) {
-                                var bookId = json.books[x].bookId;
-                                var bookTitle = json.books[x].Title;
-                                var bookAuthor = json.books[x].Author;
-                                var bookPublishYear = json.books[x].PublishYear;
-                                var bookLastPrintYear = json.books[x].LastPrintYear;
-                                var bookISBN = json.books[x].ISBN;
-                                var bookNoOfPages = json.books[x].NoOfPages;
-                                var bookMainClassificationId = json.books[x].MainClassificationId;
-                                var bookMainClassificationName = json.books[x].MainClassificationName;
-                                var bookSubClassificationId = json.books[x].SubClassificationId;
-                                var bookSubClassification = json.books[x].SubClassificationName;
-
-                                //alert(json.MainClassification[x].mainClassificationName);
-                                //$('#output').html(user_profile.books[x].bookId);
-                                //option += '<option value="' + json.SubClassification[x].SubClassificationId + '">' + json.SubClassification[x].SubClassificationName + '</option>';
-                                var tbodyViewAll = '<tr>\n\
-                                                    <td>' + bookId + '</td>\n\
-                                                    <td>' + bookTitle + '</td>\n\
-                                                    <td>' + bookAuthor + '</td>\n\
-                                                    <td>' + bookMainClassificationName + '</td>\n\
-                                                    <td>' + bookSubClassification + '</td>\n\
-                                                    <td>' + bookPublishYear + '</td>\n\
-                                                    <td>' + bookLastPrintYear + '</td>\n\
-                                                    <td>' + bookISBN + '</td>\n\
-                                                    <td>' + bookNoOfPages + '</td>\n\
-                                                    <td>\n\
-                                                        <a href="#editBookModal" class="edit" data-toggle="modal">\n\
-                                                        <i class="material-icons" data-toggle="tooltip" id="editBtn' + bookId + '" value="' + bookId + '" title="Edit">&#xE254;</i></a>\n\
-                                                        <a href="#deleteBookModal" class="delete" data-toggle="modal">\n\
-                                                        <i class="material-icons" data-toggle="tooltip" id="deleteBtn' + bookId + '" value="' + bookId + '" title="Delete">&#xE872;</i></a>\n\
-                                                    </td>\n\
-                                                    </tr>';
-
-                                $("#tbodyBookDetails").append(tbodyViewAll);
-                            }
-                            var totalRecords = "Total <b>" + noOfList + "</b> record(s)";
-                            $("#totalRecordCount").append(totalRecords);
-                        },
-
-                        error: function () {
-                            //$('#id').html('Error receiving the response from json');
-                            console.log('Error receiving the response from json');
-                        },
-                    });
-                    return false;
-                });
-
-                $("#btnSearchBook").click(function () {
-                    $("#tbodyBookDetails").empty();
-
-                    $("#totalRecordCount").empty();
-
-                    var firstFilterType = $("#firstFilterType").find('option:selected').attr('id');
-                    var firstFilterText = $("#firstFilterText").val();
-                    var secondFilterType = $("#secondFilterType").find('option:selected').attr('id');
-                    var secondFilterText = $("#secondFilterText").val();
-                    //var editBookId = $(this).attr('value');
-
-                    $.ajax({
-                        url: 'SearchBookController?firstFilterText=' + firstFilterText + '&firstFilterType=' + firstFilterType + '&secondFilterType=' + secondFilterType + '&secondFilterText=' + secondFilterText,
-
-                        complete: function (searchResponse) {
-                            var json = JSON.parse(searchResponse.responseText);
-                            var noOfList = Object.keys(json.books).length;
-                            //alert(json.MainClassification[0].mainClassificationName);
-
-                            for (var x = 0; x < noOfList; x++) {
-                                var bookId = json.books[x].bookId;
-                                var bookTitle = json.books[x].Title;
-                                var bookAuthor = json.books[x].Author;
-                                var bookPublishYear = json.books[x].PublishYear;
-                                var bookLastPrintYear = json.books[x].LastPrintYear;
-                                var bookISBN = json.books[x].ISBN;
-                                var bookNoOfPages = json.books[x].NoOfPages;
-                                var bookMainClassificationId = json.books[x].MainClassificationId;
-                                var bookMainClassificationName = json.books[x].MainClassificationName;
-                                var bookSubClassificationId = json.books[x].SubClassificationId;
-                                var bookSubClassification = json.books[x].SubClassificationName;
-
-                                //alert(json.MainClassification[x].mainClassificationName);
-                                //$('#output').html(user_profile.books[x].bookId);
-                                //option += '<option value="' + json.SubClassification[x].SubClassificationId + '">' + json.SubClassification[x].SubClassificationName + '</option>';
-                                var tbodyViewAll = '<tr>\n\
-                                                    <td>' + bookId + '</td>\n\
-                                                    <td>' + bookTitle + '</td>\n\
-                                                    <td>' + bookAuthor + '</td>\n\
-                                                    <td>' + bookMainClassificationName + '</td>\n\
-                                                    <td>' + bookSubClassification + '</td>\n\
-                                                    <td>' + bookPublishYear + '</td>\n\
-                                                    <td>' + bookLastPrintYear + '</td>\n\
-                                                    <td>' + bookISBN + '</td>\n\
-                                                    <td>' + bookNoOfPages + '</td>\n\
-                                                    <td>\n\
-                                                        <a href="#editBookModal" class="edit" data-toggle="modal">\n\
-                                                        <i class="material-icons" data-toggle="tooltip" id="editBtn' + bookId + '" value="' + bookId + '" title="Edit">&#xE254;</i></a>\n\
-                                                        <a href="#deleteBookModal" class="delete" data-toggle="modal">\n\
-                                                        <i class="material-icons" data-toggle="tooltip" id="deleteBtn' + bookId + '" value="' + bookId + '" title="Delete">&#xE872;</i></a>\n\
-                                                    </td>\n\
-                                                    </tr>';
-
-                                $("#tbodyBookDetails").append(tbodyViewAll);
-                            }
-                            var totalRecords = "Total <b>" + noOfList + "</b> record(s)";
-                            $("#totalRecordCount").append(totalRecords);
-                        },
-
-                        error: function () {
-                            //$('#id').html('Error receiving the response from json');
-                            console.log('Error receiving the response from json');
-                        },
-                    });
-                    return false;
-                });
+//                $("#btnSearchBook").click(function () {
+//                    $("#tbodyBookDetails").empty();
+//
+//                    $("#totalRecordCount").empty();
+//
+//                    var firstFilterType = $("#firstFilterType").find('option:selected').attr('id');
+//                    var firstFilterText = $("#firstFilterText").val();
+//                    var secondFilterType = $("#secondFilterType").find('option:selected').attr('id');
+//                    var secondFilterText = $("#secondFilterText").val();
+//                    //var editBookId = $(this).attr('value');
+//
+//                    $.ajax({
+//                        url: 'SearchBookController?firstFilterText=' + firstFilterText + '&firstFilterType=' + firstFilterType + '&secondFilterType=' + secondFilterType + '&secondFilterText=' + secondFilterText,
+//
+//                        complete: function (searchResponse) {
+//                            var json = JSON.parse(searchResponse.responseText);
+//                            var noOfList = Object.keys(json.books).length;
+//                            //alert(json.MainClassification[0].mainClassificationName);
+//
+//                            for (var x = 0; x < noOfList; x++) {
+//                                var bookId = json.books[x].bookId;
+//                                var bookTitle = json.books[x].Title;
+//                                var bookAuthor = json.books[x].Author;
+//                                var bookPublishYear = json.books[x].PublishYear;
+//                                var bookLastPrintYear = json.books[x].LastPrintYear;
+//                                var bookISBN = json.books[x].ISBN;
+//                                var bookNoOfPages = json.books[x].NoOfPages;
+//                                var bookMainClassificationId = json.books[x].MainClassificationId;
+//                                var bookMainClassificationName = json.books[x].MainClassificationName;
+//                                var bookSubClassificationId = json.books[x].SubClassificationId;
+//                                var bookSubClassification = json.books[x].SubClassificationName;
+//
+//                                //alert(json.MainClassification[x].mainClassificationName);
+//                                //$('#output').html(user_profile.books[x].bookId);
+//                                //option += '<option value="' + json.SubClassification[x].SubClassificationId + '">' + json.SubClassification[x].SubClassificationName + '</option>';
+//                                var tbodyViewAll = '<tr>\n\
+//                                                    <td>' + bookId + '</td>\n\
+//                                                    <td>' + bookTitle + '</td>\n\
+//                                                    <td>' + bookAuthor + '</td>\n\
+//                                                    <td>' + bookMainClassificationName + '</td>\n\
+//                                                    <td>' + bookSubClassification + '</td>\n\
+//                                                    <td>' + bookPublishYear + '</td>\n\
+//                                                    <td>' + bookLastPrintYear + '</td>\n\
+//                                                    <td>' + bookISBN + '</td>\n\
+//                                                    <td>' + bookNoOfPages + '</td>\n\
+//                                                    <td>\n\
+//                                                        <a href="#editBookModal" class="edit" data-toggle="modal">\n\
+//                                                        <i class="material-icons" data-toggle="tooltip" id="editBtn' + bookId + '" value="' + bookId + '" title="Edit">&#xE254;</i></a>\n\
+//                                                        <a href="#deleteBookModal" class="delete" data-toggle="modal">\n\
+//                                                        <i class="material-icons" data-toggle="tooltip" id="deleteBtn' + bookId + '" value="' + bookId + '" title="Delete">&#xE872;</i></a>\n\
+//                                                    </td>\n\
+//                                                    </tr>';
+//
+//                                $("#tbodyBookDetails").append(tbodyViewAll);
+//                            }
+//                            var totalRecords = "Total <b>" + noOfList + "</b> record(s)";
+//                            $("#totalRecordCount").append(totalRecords);
+//                        },
+//
+//                        error: function () {
+//                            //$('#id').html('Error receiving the response from json');
+//                            console.log('Error receiving the response from json');
+//                        },
+//                    });
+//                    return false;
+//                });
             });
 
 
@@ -551,7 +551,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="index.jsp"><img  src="img/Home-icon (1).png" width="40" height="40"></a>
 
-                <a class="nav-link text-dark" href="AddBook.jsp">Add Book<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-dark" href="ViewBookController">Book<span class="sr-only">(current)</span></a>
 
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -561,24 +561,24 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="/ViewMainClassificationController" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Classification
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-                                <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Main Classification</a>
+                                <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="./ViewMainClassificationController">Main Classification</a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="./ViewMainClassificationController">Add Main Classification</a></li>
-                                        <li><a class="dropdown-item" href="#">Edite main Classification</a></li>
-                                        <li><a class="dropdown-item" href="#">Delete main classification</a></li>
+<!--                                        <li><a class="dropdown-item" href="#">Edite main Classification</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete main classification</a></li>-->
 
                                     </ul>
                                 </li>
-                                <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Sub Classification</a>
+                                <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="./ViewSubClassificainController">Sub Classification</a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Add Sub Classification</a></li>
-                                        <li><a class="dropdown-item" href="#">Edite sub Classification</a></li>
-                                        <li><a class="dropdown-item" href="#">Delete main Classification</a></li>
+                                        <li><a class="dropdown-item" href="./ViewSubClassificainController">Add Sub Classification</a></li>
+<!--                                        <li><a class="dropdown-item" href="#">Edite sub Classification</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete main Classification</a></li>-->
                                     </ul>
                                 </li>
                             </ul>
@@ -586,9 +586,9 @@
                     </ul>
                 </div>      
                 <!--search-->
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form method="get" action="SearchBookController"class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text"  id="myInput" name="searchText" placeholder="Search" aria-label="Search"style="width:200px; display: initial;"/>
+                    <button class="btn btn-success my-2 my-sm-0" type="submit"id="btnSearchMainClassification" name="btnSearchMainClassification">Search</button>
                 </form>
             </nav>
         </div>
@@ -607,7 +607,7 @@
 <!--                                <i class="material-icons">&#xE147;</i>-->
                                 <span>Add New Book</span>
                             </a>
-                            <a href="./ViewMainClassificationController" class="btn btn-info" id="btnViewAll" name="btnViewAll" value="ViewAllRecords">
+                            <a href="./ViewBookController" class="btn btn-info" id="btnViewAll" name="btnViewAll" value="ViewAllRecords">
                                 <span>View All</span>
                             </a>
                             <!--                             <button class="btn btn-info" id="btnViewAll" name="btnViewAll" value="ViewAllRecords">View All</button>-->
@@ -648,25 +648,29 @@
                             <td><%=b.getISBN()%></td>
                             <td><%=b.getNoOfPages()%></td>
                             <td>
-                                <div class="row">
                                     <a href="#editBookModal" class="edit" data-toggle="modal">
-                                        <i class="material-icons" data-toggle="tooltip" value="<%=b.getBookId()%>" title="Edit">&#xE254;</i>
+                                        <i class="material-icons" data-toggle="tooltip" id="editBtn<%=b.getBookId()%>" value="<%=b.getBookId()%>" title="Edit">&#xE254;</i>
                                     </a>
-                           <!-- <div class="row"><form action="" method="get"><button name="edit" class="btn btn-link"  value="<%=b.getBookId()%>"><i class="fas fa-edit"></i></button></form> -->
-                                    <form action="DeleteBookController" method="get"><button name="delete" title="Delete" class="btn btn-link "  value="<%=b.getBookId()%>"><i class="fas fa-trash"></i></button></form></div>
-                            </td>
+                                    <a href="#deleteBookModal" class="delete" data-toggle="modal">
+                                        <i class="material-icons" data-toggle="tooltip" id="deleteBtn<%=b.getBookId()%>" value="<%=b.getBookId()%>" title="Delete">&#xE872;</i>
+                                    </a>
+                                </td>
                         </tr>
                         <%}
                         }%>
                     </tbody>
                 </table>
+                    <div class="clearfix">
+                    <div class="hint-text">Total
+                        <b>${records}</b> record(s)</div>
+                </div>
             </div>
         </div>
         <!-- ADD BOOK -->
         <div id="addBookModal" class="modal fade">
             <div class="modal-dialog" style="max-width:60%;">
                 <div class="modal-content">
-                    <form method="get" action="AddBookController">
+                    <form method="get" action="BookController">
                         <div class="modal-header">
                             <h4 class="modal-title">Add Book</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -729,7 +733,7 @@
         </div>
         <!-- edite model-->
         <div id="editBookModal" class="modal fade">
-            <div class="modal-dialog" style="max-width:100%;">
+            <div class="modal-dialog" style="max-width:60%;">
                 <div class="modal-content">
                     <form method="get" action="EditBookController">
                         <div class="modal-header">
@@ -739,53 +743,79 @@
                         <div class="modal-body col-md-6">
                             <div class="form-group">
                                 <label>Book ID</label>
-                                <label class="form-control" disabled name =""">B001</label>
+                                <label class="form-control" name="editBookIdLabel" id="editBookIdLabel" readonly></label>
+                                <input type="text" name="editBookId" id="editBookId" class="form-control" hidden style="display:none;">
                             </div>
                             <div class="form-group">
                                 <label>Book Title</label>
-                                <input type="text" class="form-control" required name ="title">
+                                <input type="text" name="editBookTitle" id="editBookTitle" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Book Author</label>
-                                <input type="text" class="form-control" required name ="author">
+                                <input type="text" name="editBookAuthor" id="editBookAuthor" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Main Classification</label>
-                                <select class="form-control" name="mainclassiffication">
-                                    <option>Main Classification</option>
+                                <select class="form-control" id="editBookMainClassification" name="editBookMainClassification">
+                                    <option>Select Main Classification</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Sub Classification</label>
-                                <select class="form-control"name="subclassification">
-                                    <option>Sub Classification</option>
+                                <select class="form-control" id="editBookSubClassification" name="editBookSubClassification">
                                 </select>
                             </div>
                         </div>
                         <div class="modal-body col-md-6">
                             <div class="form-group">
                                 <label>Publish Year</label>
-                                <select class="form-control"name="publishedyear">
+                                <select class="form-control" id="editBookPublishYear" name="editBookPublishYear">
                                     <option>Publish Year</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Last Print Year</label>
-                                <input type="text" class="form-control" required name="lastprint">
+                                <select class="form-control" id="editBookLastPrintYear" name="editBookLastPrintYear">
+                                    <option>Select Last Print Year</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>ISBN No</label>
-                                <input type="text" class="form-control" required name="isbn">
+                                <input type="text" name="editISBN" id="editISBN" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>No of Pages</label>
-                                <input type="number" class="form-control" required name="numberofpage">
+                                <input type="number" name="editNoOfPages" id="editNoOfPages" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-info" value="Update">
+                            <input type="submit" class="btn btn-info" value="Save" style="background: #54a754;">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Delete Modal HTML -->
+        <div id="deleteBookModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form method="get" action="DeleteBookController">
+                        <input type="text" name="deleteBookId" id="deleteBookId" hidden style="display:none;"/>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Delete Book</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete this record?</p>
+                            <p class="text-warning">
+                                <small>This action cannot be undone.</small>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-danger" value="Delete">
                         </div>
                     </form>
                 </div>

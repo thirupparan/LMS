@@ -4,16 +4,14 @@
  * and open the template in the editor.
  */
 package com.sgc.controller;
-
 import com.sgc.data.BookDao;
+import com.sgc.model.Book;
+
 import com.sgc.model.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,10 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author thirupparan
+ * @author thiru
  */
-@WebServlet(name = "ViewBookController", urlPatterns = {"/ViewBookController"})
-public class ViewBookController extends HttpServlet {
+@WebServlet(name = "SearchBookController", urlPatterns = {"/SearchBookController"})
+public class SearchBookController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,7 +40,15 @@ public class ViewBookController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet SearchBookController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet SearchBookController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -59,18 +65,16 @@ public class ViewBookController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        try {
-            ArrayList<Book> result;
-            BookDao dao = new BookDao();
-            result = dao.showBook();
-            int recordCount = result.size();
-            request.setAttribute("result", result);
-            request.setAttribute("records", recordCount);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/SearchBook.jsp");
+        String bookId = request.getParameter("searchText");
+                BookDao dao = new BookDao();
+        ArrayList<Book> bookList;
+       bookList = dao.serarchBook(bookId);
+       int records = bookList.size();
+       request.setAttribute("records", records);
+       request.setAttribute("result",bookList);
+       RequestDispatcher dispatcher = request.getRequestDispatcher("SearchBook.jsp");
             dispatcher.forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewBookController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
     /**
@@ -84,7 +88,7 @@ public class ViewBookController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**

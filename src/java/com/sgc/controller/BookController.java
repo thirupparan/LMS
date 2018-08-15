@@ -66,20 +66,20 @@ public class BookController extends HttpServlet {
         // processRequest(request, response);
         Book book = new Book();
         book.setBookId(request.getParameter("bookId"));
-        book.setTitle(request.getParameter("title"));
-        book.setAuthor(request.getParameter("author"));
-        book.setMainClassification(request.getParameter("mainClassification"));
-        book.setSubClassification(request.getParameter("subClassification"));
-        book.setYearOfPublishing(request.getParameter("yearOfPublished"));
-        book.setLastPrintedYear(request.getParameter("lastPrintedYear"));
-        book.setISBN(request.getParameter("ISBN"));
-        book.setNoOfPages(request.getParameter("noOfPages"));
+        book.setTitle(request.getParameter("bookTitle"));
+        book.setAuthor(request.getParameter("bookAuthor"));
+        book.setMainClassification(request.getParameter("addBookMainClassification"));
+        book.setSubClassification(request.getParameter("addBookSubClassification"));
+        book.setYearOfPublishing(request.getParameter("addBookPublishYear"));
+        book.setLastPrintedYear(request.getParameter("addBookLastPrintYear"));
+        book.setISBN(request.getParameter("isbn"));
+        book.setNoOfPages(request.getParameter("noofpages"));
 
         BookDao bookdao = new BookDao();
         try {
             bookdao.saveBook(book);
             RequestDispatcher dispatcher;
-            dispatcher = request.getRequestDispatcher("/ViewBookController");
+            dispatcher = request.getRequestDispatcher("./ViewBookController");
             dispatcher.forward(request, response);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(BookController.class.getName()).log(Level.SEVERE, null, ex);

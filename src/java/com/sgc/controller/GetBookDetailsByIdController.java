@@ -81,17 +81,17 @@ public class GetBookDetailsByIdController extends HttpServlet {
             JsonObjectBuilder bookBuilder = Json.createObjectBuilder();
             
             bookJson = bookBuilder
-                    .add("BookID", book.getBookId())
+                    .add("bookId", book.getBookId())
                     .add("Title", book.getTitle() != null ? book.getTitle() : "")
                     .add("Author", book.getAuthor() != null ? book.getAuthor() : "")
-                    .add("YearOfPublishing", book.getYearOfPublishing() != null ? book.getYearOfPublishing() : "")
-                    .add("LastPrintedYear", book.getLastPrintedYear() != null ? book.getLastPrintedYear() : "")
-                    .add("ISBNno", book.getISBN() != null ? book.getISBN() : "")
+                    .add("PublishYear", book.getYearOfPublishing() != null ? book.getYearOfPublishing() : "")
+                    .add("LastPrintYear", book.getLastPrintedYear() != null ? book.getLastPrintedYear() : "")
+                    .add("ISBN", book.getISBN() != null ? book.getISBN() : "")
                     .add("NoOfPages", book.getNoOfPages())
-                    .add("MCID", book.getMainClassification() != null ? book.getMainClassification() : "")
-                    //.add("MainClassificationName", book.ge != null ? book.getMainClassificationName() : "")
-                    .add("SCID", book.getSubClassification() != null ? book.getSubClassification() : "")
-                    //.add("SubClassificationName", book.getSubclassificationName() != null ? book.getSubclassificationName() : "")
+                    .add("MainClassificationId", book.getMainClassification() != null ? book.getMainClassification() : "")
+                    .add("MainClassificationName", book.getMainClassificationName() != null ? book.getMainClassificationName() : "")
+                    .add("SubClassificationId", book.getSubClassification() != null ? book.getSubClassification() : "")
+                    .add("SubClassificationName", book.getSubClassificationName() != null ? book.getSubClassificationName() : "")
                     .build();
             
             arrayBuilder.add(bookJson);
