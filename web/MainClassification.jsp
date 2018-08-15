@@ -152,7 +152,7 @@
 
                                 <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Main Classification</a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/ViewMainClassificationController">Add Main Classification</a></li>
+                                        <li><a class="dropdown-item" href="./ViewMainClassificationController">Add Main Classification</a></li>
 <!--                                        <li><a class="dropdown-item" href="#">Edite main Classification</a></li>
                                         <li><a class="dropdown-item" href="#">Delete main classification</a></li>-->
 

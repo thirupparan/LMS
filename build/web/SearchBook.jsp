@@ -576,7 +576,7 @@
                                 </li>
                                 <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="./ViewSubClassificainController">Sub Classification</a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="./ViewSubClassificainController">Add Sub Classification</a></li>
+                                        <li><a class="dropdown-item" href="ViewSubClassificationController">Add Sub Classification</a></li>
 <!--                                        <li><a class="dropdown-item" href="#">Edite sub Classification</a></li>
                                         <li><a class="dropdown-item" href="#">Delete main Classification</a></li>-->
                                     </ul>
