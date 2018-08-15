@@ -67,8 +67,8 @@
                     complete: function (response) {
                         var json = JSON.parse(response.responseText);
                         var noOfRecords = Object.keys(json.MainClassification).length;
-                        var mainClassificationId = json.MainClassification[0].MainClassificationId;
-                        var mainClassificationName = json.MainClassification[0].MainClassificationName;
+                        //var mainClassificationId = json.MainClassification[0].MainClassificationId;
+                        //var mainClassificationName = json.MainClassification[0].MainClassificationName;
 
                         option = '<option Selected disabled hidden>Please select Main Classification</option>';
 
@@ -175,24 +175,7 @@
                 //alert(deleteBookIdValue);
                 $("#deleteSubClassificationId").val(deleteSubClassificationId);
             });
-            function myFunction() {
-    // Declare variables
-    var input, filter, ul, li, a, i;
-    input = document.getElementById('myInput');
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
-    li = ul.getElementsByTagName('li');
-
-    // Loop through all list items, and hide those who don't match the search query
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-    }
-}
+            
 
         </script>
         <title>Sub Classification</title>
@@ -203,7 +186,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="index.jsp"><img  src="img/Home-icon (1).png" width="40" height="40"></a>
 
-                <a class="nav-link text-dark" href="AddBook.jsp">Add Book<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-dark" href="ViewBookController">Book<span class="sr-only">(current)</span></a>
 
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -221,16 +204,16 @@
                                 <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Main Classification</a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="./ViewMainClassificationController">Add Main Classification</a></li>
-                                        <li><a class="dropdown-item" href="#">Edite main Classification</a></li>
-                                        <li><a class="dropdown-item" href="#">Delete main classification</a></li>
+<!--                                        <li><a class="dropdown-item" href="#">Edite main Classification</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete main classification</a></li>-->
 
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Sub Classification</a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="./ViewSubClassificationController">Add Sub Classification</a></li>
-                                        <li><a class="dropdown-item" href="#">Edite sub Classification</a></li>
-                                        <li><a class="dropdown-item" href="#">Delete main Classification</a></li>
+<!--                                        <li><a class="dropdown-item" href="#">Edite sub Classification</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete main Classification</a></li>-->
                                     </ul>
                                 </li>
                             </ul>
@@ -239,7 +222,7 @@
                 </div>      
                 <!--search-->
                 <form method="get" action="SearchSubClassificationController"class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" onkeyup="myFunction()" id="myInput" name="searchText" placeholder="Search" aria-label="Search"style="width:200px; display: initial;"/>
+                    <input class="form-control mr-sm-2" type="text"  id="myInput" name="searchText" placeholder="Search" aria-label="Search"style="width:200px; display: initial;"/>
                     <button class="btn btn-success my-2 my-sm-0" type="submit"id="btnSearchMainClassification" name="btnSearchMainClassification">Search</button>
                 </form>
             </nav>

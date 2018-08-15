@@ -34,24 +34,27 @@
         </div>
         <div class="container-fluid">
             <!-- image -->
-            <div class="row  col float-right mb12">
-                <div class=" m col-md-4">
+            <!--           <div class="row  col-lg-6" align = "center">-->
+            <div class="row" align="center">
+                <div class=" m col-md-6">
                     <div class="card text-center bg-light" style="width:250px">
-                        <a href="ViewBookController"><img class="card-img-top" src="img/add book.png" alt="Card image" style="width:100%"></a>
+                        <a href="ViewBookController"><img class="card-img-top" src="img/search_book.png" alt="Card image" style="width:100%"></a>
                     </div>
                 </div>
-                <div class="m col-md-4 ">
+                <div class="m col-md-6">
                     <div class="card text-center bg-light" style="width:250px">
-                        <a href="MainClassification.jsp"><img class="card-img-top" src="img/book_classification.png" alt="Card image" style="width:100%"></a>
+                        <a href="ViewMainClassificationController"><img class="card-img-top" src="img/book_classification.png" alt="Card image" style="width:100%"></a>
                     </div>
                 </div>
-                <div class="m col-md-4">
-                    <div class="card text-center bg-light" style="width:250px">
-                        <a href="#"><img class="card-img-top" src="img/search_book.png" alt="Card image" style="width:100%"></a>
-                    </div>
-                </div>
-
             </div>
+
+            <!--                <div class="m col-md-4">
+                                <div class="card text-center bg-light" style="width:250px">
+                                    <a href="#"><img class="card-img-top" src="img/search_book.png" alt="Card image" style="width:100%"></a>
+                                </div>
+                            </div>-->
+
+            <!--           </div>-->
 
 
 
