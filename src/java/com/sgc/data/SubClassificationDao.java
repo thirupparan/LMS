@@ -24,7 +24,7 @@ public class SubClassificationDao {
 
     public ArrayList showSubclassification() {
         String sql = "SELECT * FROM sub sc "
-                + "JOIN main mc ON sc.MCID=mc.MCID ORDER BY sc.MCID ";
+                + "JOIN main mc ON sc.MCID=mc.MCID ORDER BY sc.SCID ";
 
         ArrayList<SubClassification> subClassificationList = new ArrayList<>();
 
