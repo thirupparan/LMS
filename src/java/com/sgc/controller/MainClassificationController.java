@@ -71,7 +71,7 @@ public class MainClassificationController extends HttpServlet {
         try {
             mainClassificationDao.addClassification(mainClassification);
             RequestDispatcher dispatcher;
-            dispatcher = request.getRequestDispatcher("/MainClassification.jsp");
+            dispatcher = request.getRequestDispatcher("/ViewMainClassificationController");
             dispatcher.forward(request, response);
         } catch (Exception e) {
             Logger.getLogger(MainClassificationController.class.getName()).log(Level.SEVERE, null, e);
