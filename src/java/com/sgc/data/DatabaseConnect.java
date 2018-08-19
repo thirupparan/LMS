@@ -18,14 +18,14 @@ public class DatabaseConnect {
 
     static Connection con = null;
 
-    public Connection getconnection()//common method
+    public Connection getconnection() throws ClassNotFoundException//common method
     {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/librarydb?useSSL=false", "root", "manager");
             System.out.println("connected Database!");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, new String(" Error.." + e));
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, (" Error.." + e));
         }
         return con;
     }

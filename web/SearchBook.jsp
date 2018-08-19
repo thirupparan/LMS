@@ -623,7 +623,7 @@
                             <th>Main Class</th>
                             <th>Sub Class</th>
                             <th>Published Year</th>
-                            <th>Printed Year</th>
+                            <th> Last Printed Year</th>
                             <th>ISBN No</th>
                             <th>No Of Pages</th>
                             <th style="width: 8%"> </th>
