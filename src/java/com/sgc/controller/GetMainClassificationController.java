@@ -97,6 +97,8 @@ public class GetMainClassificationController extends HttpServlet {
             writer.close();
         } catch (SQLException ex) {
             Logger.getLogger(GetMainClassificationController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GetMainClassificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

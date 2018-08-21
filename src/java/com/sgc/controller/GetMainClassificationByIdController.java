@@ -99,6 +99,8 @@ public class GetMainClassificationByIdController extends HttpServlet {
             writer.close();
         } catch (SQLException ex) {
             Logger.getLogger(GetMainClassificationByIdController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GetMainClassificationByIdController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

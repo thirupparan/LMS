@@ -91,7 +91,7 @@ public class EditBookController extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ViewBookController");
             dispatcher.forward(request, response);
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             Logger.getLogger(EditBookController.class.getName()).log(Level.SEVERE, null, e);
         }
 

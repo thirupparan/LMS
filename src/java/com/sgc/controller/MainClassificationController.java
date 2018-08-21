@@ -67,7 +67,12 @@ public class MainClassificationController extends HttpServlet {
         MainClassification mainClassification = new MainClassification();
         mainClassification.setMainClassificationId(request.getParameter("mainClassificationId"));
         mainClassification.setMainClassificationName(request.getParameter("classificationName"));
-        MainClassificationDao mainClassificationDao = new MainClassificationDao();
+        MainClassificationDao mainClassificationDao = null;
+        try {
+            mainClassificationDao = new MainClassificationDao();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainClassificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             mainClassificationDao.addClassification(mainClassification);
             RequestDispatcher dispatcher;

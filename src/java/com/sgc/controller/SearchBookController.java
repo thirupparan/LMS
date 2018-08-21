@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -67,8 +69,12 @@ public class SearchBookController extends HttpServlet {
         //processRequest(request, response);
         String bookId = request.getParameter("searchText");
                 BookDao dao = new BookDao();
-        ArrayList<Book> bookList;
-       bookList = dao.serarchBook(bookId);
+        ArrayList<Book> bookList = null;
+        try {
+            bookList = dao.serarchBook(bookId);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SearchBookController.class.getName()).log(Level.SEVERE, null, ex);
+        }
        int records = bookList.size();
        request.setAttribute("records", records);
        request.setAttribute("result",bookList);

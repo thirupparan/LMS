@@ -75,7 +75,7 @@ public class AddSubClassificationController extends HttpServlet {
         try {
             subClassificationDao.addSubClassification(subClassification);
             request.getRequestDispatcher("ViewSubClassificationController").forward(request, response);
-        } catch (IOException | ServletException ex) {
+        } catch (Exception ex) {
             System.out.println("Add Details Error: " + ex.getMessage());
         }
     }

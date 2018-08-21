@@ -10,6 +10,8 @@ import com.sgc.model.SubClassification;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
@@ -69,7 +71,12 @@ SubClassificationDao subClassificationDao = new SubClassificationDao();
         //processRequest(request, response);
         String mainClassificationId = request.getParameter("mainClassificationId");
         
-        List<SubClassification> subClassificationList = subClassificationDao.subClassificationByMainClassification(mainClassificationId);
+        List<SubClassification> subClassificationList = null;
+    try {
+        subClassificationList = subClassificationDao.subClassificationByMainClassification(mainClassificationId);
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(GetSubClassificationByMainClassificationController.class.getName()).log(Level.SEVERE, null, ex);
+    }
         
         response.setContentType("application/json");
         PrintWriter writer = response.getWriter();

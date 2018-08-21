@@ -66,7 +66,12 @@ public class DeleteMainClassificationController extends HttpServlet {
         //processRequest(request, response);
         //java script = deleteMainClassificationId dont forget
         String MCID = request.getParameter("deleteMainClassificationId");
-        MainClassificationDao mainClassificationDao = new MainClassificationDao();
+        MainClassificationDao mainClassificationDao = null;
+        try {
+            mainClassificationDao = new MainClassificationDao();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DeleteMainClassificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             mainClassificationDao.deleteMainclassification(MCID);
             RequestDispatcher dispatcher = request.getRequestDispatcher("./ViewMainClassificationController?");

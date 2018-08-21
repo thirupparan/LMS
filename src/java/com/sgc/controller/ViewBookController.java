@@ -70,6 +70,8 @@ public class ViewBookController extends HttpServlet {
             dispatcher.forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(ViewBookController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ViewBookController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

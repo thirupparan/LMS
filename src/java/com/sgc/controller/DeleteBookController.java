@@ -71,7 +71,7 @@ public class DeleteBookController extends HttpServlet {
             RequestDispatcher dispatcher;
             dispatcher = request.getRequestDispatcher("/ViewBookController");
             dispatcher.forward(request, response);
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(DeleteBookController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

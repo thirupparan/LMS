@@ -78,6 +78,8 @@ public class SearchMainController extends HttpServlet {
             dispatcher.forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(SearchMainController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SearchMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

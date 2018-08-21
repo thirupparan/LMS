@@ -65,7 +65,12 @@ public class EditMainClassificationController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        MainClassificationDao mainClassificationDao = new MainClassificationDao();
+        MainClassificationDao mainClassificationDao = null;
+        try {
+            mainClassificationDao = new MainClassificationDao();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditMainClassificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         MainClassification mainClassification = new MainClassification();
         String id = request.getParameter("mainClassificationId");
         String name = request.getParameter("classificationName");

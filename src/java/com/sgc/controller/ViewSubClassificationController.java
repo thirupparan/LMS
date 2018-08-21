@@ -10,6 +10,8 @@ import com.sgc.model.SubClassification;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -64,9 +66,18 @@ public class ViewSubClassificationController extends HttpServlet {
         //processRequest(request, response);
         SubClassificationDao subClassificationDao = new SubClassificationDao();
 
-        ArrayList<SubClassification> subClassificationList = subClassificationDao.showSubclassification();
+        ArrayList<SubClassification> subClassificationList = null;
+        try {
+            subClassificationList = subClassificationDao.showSubclassification();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ViewSubClassificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        subClassificationList = subClassificationDao.showSubclassification();
+        try {
+            subClassificationList = subClassificationDao.showSubclassification();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ViewSubClassificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         int records = subClassificationList.size();
 

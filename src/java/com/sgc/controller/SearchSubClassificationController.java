@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -65,10 +67,14 @@ public class SearchSubClassificationController extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         String firstFilterText = request.getParameter("searchText");
-        List<SubClassification> subClassificationList;
+        List<SubClassification> subClassificationList = null;
         SubClassificationDao subClassificationDao = new SubClassificationDao();
-        subClassificationList = subClassificationDao.searchSubClassificationByMainClassificationName(firstFilterText);
-        //subClassificationList = subClassificationDao.showSubclassification();
+        try {
+            subClassificationList = subClassificationDao.searchSubClassificationByMainClassificationName(firstFilterText);
+            //subClassificationList = subClassificationDao.showSubclassification();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SearchSubClassificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         int records = subClassificationList.size();
 

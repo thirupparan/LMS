@@ -8,6 +8,8 @@ package com.sgc.controller;
 import com.sgc.data.SubClassificationDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -64,7 +66,11 @@ public class DeleteSubClassificationController extends HttpServlet {
 
         SubClassificationDao subClassificationDao = new SubClassificationDao();
 
-        subClassificationDao.deleteSubclassification(subClassificationId);
+        try {
+            subClassificationDao.deleteSubclassification(subClassificationId);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DeleteSubClassificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         request.getRequestDispatcher("/ViewSubClassificationController?").forward(request, response);
     }
 

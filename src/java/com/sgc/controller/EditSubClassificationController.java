@@ -9,6 +9,8 @@ import com.sgc.data.SubClassificationDao;
 import com.sgc.model.SubClassification;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -72,7 +74,11 @@ public class EditSubClassificationController extends HttpServlet {
         subClassification.setSubClassificationName(editSubClassificationName);
         subClassification.setMainClassificationId(mainClassificationId);
 
-        subClassificationDao.editSubClassification(subClassification);
+        try {
+            subClassificationDao.editSubClassification(subClassification);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditSubClassificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         request.getRequestDispatcher("/ViewSubClassificationController?").forward(request, response);
     }
 

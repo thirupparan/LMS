@@ -10,6 +10,8 @@ import com.sgc.model.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
@@ -68,7 +70,12 @@ public class GetBookDetailsByIdController extends HttpServlet {
         //processRequest(request, response);
         String bookId = request.getParameter("bookId");
         
-        List<Book> bookList = bookDao.viewBookById(bookId);
+        List<Book> bookList = null;
+     try {
+         bookList = bookDao.viewBookById(bookId);
+     } catch (ClassNotFoundException ex) {
+         Logger.getLogger(GetBookDetailsByIdController.class.getName()).log(Level.SEVERE, null, ex);
+     }
         
         response.setContentType("application/json");
         PrintWriter writer = response.getWriter();

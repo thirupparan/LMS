@@ -10,6 +10,8 @@ import com.sgc.model.SubClassification;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
@@ -69,7 +71,12 @@ public class GetSubClassificationByIdController extends HttpServlet {
         SubClassificationDao subClassificationDao = new SubClassificationDao();
         String subClassificationId = request.getParameter("subClassificationId");
 
-        List<SubClassification> subClassificationList = subClassificationDao.viewSubClassificationById(subClassificationId);
+        List<SubClassification> subClassificationList = null;
+        try {
+            subClassificationList = subClassificationDao.viewSubClassificationById(subClassificationId);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GetSubClassificationByIdController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         response.setContentType("application/json");
         try (PrintWriter writer = response.getWriter()) {

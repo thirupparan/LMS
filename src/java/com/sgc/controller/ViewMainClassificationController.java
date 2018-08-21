@@ -77,6 +77,8 @@ public class ViewMainClassificationController extends HttpServlet {
             dispatcher.forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(ViewMainClassificationController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ViewMainClassificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
