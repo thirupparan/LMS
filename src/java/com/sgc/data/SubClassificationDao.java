@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  */
 public class SubClassificationDao {
 
-    public ArrayList showSubclassification() {
+    public ArrayList showSubclassification() throws ClassNotFoundException {
         String sql = "SELECT * FROM sub sc "
                 + "JOIN main mc ON sc.MCID=mc.MCID ORDER BY sc.SCID ";
 
@@ -56,7 +56,7 @@ public class SubClassificationDao {
 
     }
 
-    public ArrayList viewSubClassificationById(String subClassificationId) {
+    public ArrayList viewSubClassificationById(String subClassificationId) throws ClassNotFoundException {
         String sql = "SELECT * FROM sub sc "
                 + "JOIN main mc "
                 + "ON sc.MCID = mc.MCID "
@@ -87,7 +87,7 @@ public class SubClassificationDao {
         return subClassificationList;
     }
 
-    public void addSubClassification(SubClassification subClassification) {
+    public void addSubClassification(SubClassification subClassification) throws ClassNotFoundException {
         DatabaseConnect db = new DatabaseConnect();
         Connection con = db.getconnection();
         PreparedStatement stmt;
@@ -107,7 +107,7 @@ public class SubClassificationDao {
         }
     }
 
-    public void editSubClassification(SubClassification subClassification) {
+    public void editSubClassification(SubClassification subClassification) throws ClassNotFoundException {
         String sql = "UPDATE sub SET "
                 + "SCName = ?, "
                 + "MCID = ? "
@@ -129,7 +129,7 @@ public class SubClassificationDao {
         }
     }
 
-    public void deleteSubclassification(String subClassificationId) {
+    public void deleteSubclassification(String subClassificationId) throws ClassNotFoundException {
         String sql = "DELETE FROM sub "
                 + "WHERE SCID ='" + subClassificationId + "'";
         try {
@@ -145,7 +145,7 @@ public class SubClassificationDao {
         }
     }
 
-    public List searchSubClassificationByMainClassificationName(String firstFilterText) {
+    public List searchSubClassificationByMainClassificationName(String firstFilterText) throws ClassNotFoundException {
         String sql = "SELECT * FROM sub sc "
                 + "JOIN main mc ON sc.MCID=mc.MCID "
                 + "WHERE sc.SCID LIKE '" + firstFilterText + "%' "
@@ -182,7 +182,7 @@ public class SubClassificationDao {
         return subClassificationList;
     }
     
-    public ArrayList subClassificationByMainClassification(String mainClassificationId) {
+    public ArrayList subClassificationByMainClassification(String mainClassificationId) throws ClassNotFoundException {
         String sql = "SELECT * FROM main mc "
                 + "JOIN sub sc "
                 + "ON mc.MCID=sc.MCID "

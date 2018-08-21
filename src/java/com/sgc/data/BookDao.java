@@ -10,9 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -61,7 +59,7 @@ public class BookDao {
      * @return @throws ClassNotFoundException
      * @throws java.sql.SQLException
      */
-    public ArrayList<Book> showBook() throws SQLException {
+    public ArrayList<Book> showBook() throws SQLException, ClassNotFoundException {
         ArrayList<Book> result = new ArrayList<>();
 
         DatabaseConnect db = new DatabaseConnect();
@@ -96,7 +94,7 @@ public class BookDao {
         return result;
     }
 
-    public void deleteBook(String bookId) throws SQLException {
+    public void deleteBook(String bookId) throws SQLException, ClassNotFoundException {
         DatabaseConnect db = new DatabaseConnect();
         Connection con = db.getconnection();
         PreparedStatement statement;
@@ -109,7 +107,7 @@ public class BookDao {
         DatabaseConnect.disconnect();
     }
 
-    public void updateBook(Book book) throws SQLException {
+    public void updateBook(Book book) throws SQLException, ClassNotFoundException {
         //Book book = new Book();
         String bookId = book.getBookId();
         DatabaseConnect db = new DatabaseConnect();
@@ -148,7 +146,7 @@ public class BookDao {
         }
     }
 
-    public ArrayList viewBookById(String bookId) {
+    public ArrayList viewBookById(String bookId) throws ClassNotFoundException {
         String sql = "SELECT * FROM books b"
                 + " JOIN Sub sc ON b.SCID = sc.SCID"
                 + " JOIN main mc ON mc.MCID=b.MCID"
@@ -187,7 +185,7 @@ public class BookDao {
         return bookList;
     }
 
-    public ArrayList serarchBook(String bookId) {
+    public ArrayList serarchBook(String bookId) throws ClassNotFoundException {
         String sql = "SELECT * FROM books b "
                 + " JOIN main mc ON mc.MCID=b.MCID "
                 + " JOIN sub sc ON sc.SCID =b.SCID "

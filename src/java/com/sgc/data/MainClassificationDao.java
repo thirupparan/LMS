@@ -5,8 +5,6 @@
  */
 package com.sgc.data;
 
-import com.mysql.cj.protocol.Resultset;
-import com.mysql.cj.protocol.a.result.ResultsetRowsStreaming;
 import com.sgc.model.MainClassification;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,10 +22,14 @@ import java.util.logging.Logger;
 public class MainClassificationDao {
 
     DatabaseConnect db = new DatabaseConnect();
-    Connection con = db.getconnection();
+    Connection con;
     PreparedStatement pstmt = null;
     String sql = "INSERT INTO main (MCID, MCName) "
             + "VALUES (?, ?)";
+
+    public MainClassificationDao() throws ClassNotFoundException {
+        this.con = db.getconnection();
+    }
 
     public void addClassification(MainClassification mainClassification) {
         try {
@@ -39,7 +41,7 @@ public class MainClassificationDao {
             pstmt.executeUpdate();
             DatabaseConnect.disconnect();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("PreparedStatement Query Error: " + e.getMessage());
         }
 
@@ -130,7 +132,7 @@ public class MainClassificationDao {
     }
 
     public List<MainClassification> searchMainClassification(String searchID) throws SQLException {
-        String sql = "SELECT * FROM main "
+        String search = "SELECT * FROM main "
                 + "WHERE MCID LIKE '" + searchID + "%' "
                 + "OR MCName LIKE '" + searchID + "%' "
                 + "ORDER BY MCID";
@@ -139,7 +141,7 @@ public class MainClassificationDao {
         //Connection con = db.getconnection();
         PreparedStatement statement;
         try {
-            statement = con.prepareCall(sql);
+            statement = con.prepareCall(search);
             ResultSet rsShow = statement.executeQuery();
             while (rsShow.next()) {
                 MainClassification mainClassification = new MainClassification();
